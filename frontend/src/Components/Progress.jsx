@@ -1,14 +1,13 @@
 import { Box, LinearProgress } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 
-const Progress = () => {
-    const [progress, setProgress] = useState(10);
+const Progress = ({ progress, setProgress }) => {
   const [buffer, setBuffer] = useState(10);
 
   const progressRef = useRef(() => {});
   useEffect(() => {
     progressRef.current = () => {
-      if (progress > 100) {
+      if (progress >= 100) {
         setProgress(0);
         setBuffer(10);
       } else {
@@ -20,9 +19,14 @@ const Progress = () => {
     };
   });
   return (
-    <Box sx={{width:'50%'}}>
-    <LinearProgress variant="determinate" value={progress} valueBuffer={buffer} />
-    </Box>  )
-}
+    <Box sx={{ width: "50%" }}>
+      <LinearProgress
+        variant="determinate"
+        value={progress}
+        valueBuffer={buffer}
+      />
+    </Box>
+  );
+};
 
-export default Progress
+export default Progress;
