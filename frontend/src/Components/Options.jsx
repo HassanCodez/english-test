@@ -4,10 +4,10 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-
 const Options = ({ value, setValue, correct }) => {
+  // Define the categories
   const categories = ["noun", "verb", "adjective", "adverb"];
-
+  // Handle the change event
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -19,13 +19,13 @@ const Options = ({ value, setValue, correct }) => {
         value={value}
         onChange={handleChange}
       >
-        {categories.map((cat) => (
+        {/* Map through the categories and render each option */}
+        {categories.map((category) => (
           <FormControlLabel
-            sx={{ textTransform: "capitalize" }}
-            key={cat}
-            value={cat ? cat : ""}
+            key={category}
+            value={category}
             control={<Radio />}
-            label={cat}
+            label={category}
             disabled={correct}
           />
         ))}
@@ -33,5 +33,4 @@ const Options = ({ value, setValue, correct }) => {
     </FormControl>
   );
 };
-
 export default Options;

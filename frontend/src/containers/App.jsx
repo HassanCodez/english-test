@@ -14,19 +14,20 @@ function App() {
   const [score, setScore] = useState(0);
   const submitAnswer = (pos) => {
     setCorrect(pos);
-    pos === value && setScore((prev) => prev + 1);
+    if (pos === value) {
+      setScore((prev) => prev + 1);
+    }
     setTimeout(() => {
       setProgress((prev) => prev + 10);
       setCorrect();
-      setValue();
+      setValue("");
     }, 1000);
   };
-
+  // Check if progress is 100 and navigate to "/rank"
   if (progress === 100) {
     nav("/rank");
     localStorage.setItem("score", (score / 10) * 100);
   }
-
   console.log(progress);
   return (
     <Stack
@@ -42,7 +43,6 @@ function App() {
         Parts of speech quiz
       </Typography>
       <Progress progress={progress} setProgress={setProgress} />
-
       {isSuccess && (
         <>
           <Paper
@@ -96,5 +96,4 @@ function App() {
     </Stack>
   );
 }
-
 export default App;
